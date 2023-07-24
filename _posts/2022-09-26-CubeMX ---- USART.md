@@ -1,0 +1,90 @@
+# CubeMX----USART
+
+## 1、时钟配置
+
+​		时钟源选择芯片内部高速时钟16MHz,经分频得HCLK为64MHz,再给USART2提供64MHz时钟。
+
+![image-20220914193454340](C:\Users\zxr021109\AppData\Roaming\Typora\typora-user-images\image-20220914193454340.png)
+
+![](C:\Users\zxr021109\AppData\Roaming\Typora\typora-user-images\image-20220914193351662.png)
+
+
+
+![image-20220914193411754](C:\Users\zxr021109\AppData\Roaming\Typora\typora-user-images\image-20220914193411754.png)
+
+## 2、USART2配置
+
+模式选择异步通讯**Asynchronous**
+
+波特率为 **115200 Bits/s**
+
+传输数据长度为 **8 Bit**
+
+奇偶检验 **None**
+
+停止位 **1**
+
+数据收发选择**Receive and Transmit**
+
+![image-20220914191200637](C:\Users\zxr021109\AppData\Roaming\Typora\typora-user-images\image-20220914191200637.png)
+
+## 3、程序编译
+
+### 3.1重定向函数
+
+​		需将重定向函数添加置工程，才能正常使用 printf 打印函数。
+
+```c
+#include "stdio.h"
+
+int fgetc(FILE *f)
+{
+  uint8_t ch=0;
+  HAL_UART_Receive(&huart2,&ch,1,0xffff);
+  return ch;
+}
+
+int fputc(int ch,FILE *f)
+{
+  uint8_t temp[1]={ch};
+  HAL_UART_Transmit(&huart2,temp,1,2);
+  return ch;
+}
+
+```
+
+​		注意在使用 fput 和 fgetc等 C 语言标准库输入输出函数必须在 MDK的工程选项把“Use MicroLIB”勾选上，MicoroLIB 是缺省 C 库的备选库，它对标准 C 库进行了高度优化使代码更少，占用更少资源。
+
+![image-20220914194342950](C:\Users\zxr021109\AppData\Roaming\Typora\typora-user-images\image-20220914194342950.png)
+
+
+
+### 3.2 main.c
+
+```c
+#include "main.h"
+#include "usart.h"
+#include "gpio.h"
+
+void SystemClock_Config(void);
+
+int main(void)
+{  
+	HAL_Init();
+    SystemClock_Config();
+    MX_GPIO_Init();
+  	MX_USART2_UART_Init();
+  	
+    while (1)
+  	{
+		printf("code ok!\n");
+		HAL_Delay(1000);
+     }
+ }
+```
+
+### 3.3效果演示
+
+​		每隔1s打印“code ok !”
+
+![image-20220914195000690](C:\Users\zxr021109\AppData\Roaming\Typora\typora-user-images\image-20220914195000690.png)
