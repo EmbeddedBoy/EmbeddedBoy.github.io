@@ -17,15 +17,15 @@ comment:
     disqus: leopard
     # uyan: 2143225  # 有言id,登录有言官网申请
 
-# Social
-# social:
-#     weibo: 5366874726 
-#     github: leopardpan
-#     # zhihu: panpanleopard
-#     # juejin: xxx
-#     jianshu: 2ada30d8d0f7
-#     # twitter: 
-#     mail: leopardpan@icloud.com
+Social
+social:
+    # weibo: 5366874726 
+    github: leopardpan
+    # zhihu: panpanleopard
+    # juejin: xxx
+    # jianshu: 2ada30d8d0f7
+    # twitter: 
+    mail: leopardpan@icloud.com
 
 
 # # 百度统计 
