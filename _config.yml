@@ -68,7 +68,7 @@ nav:
     - {title: 文章, description: archive, url: '/archive'}   
     - {title: 专栏, description: tags, url: '/tags'}   
     - {title: 关于我, description: about, url: '/about'}    
-    - {title: 技术支持, description: support, url: '/support'}      
+    # - {title: 技术支持, description: support, url: '/support'}      
  
     
 
