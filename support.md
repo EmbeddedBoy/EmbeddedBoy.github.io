@@ -40,9 +40,9 @@ title: 技术支持
 
 <h3> 感谢您的打赏 </h3> 
 
-![](/images/payimg/alipayimg.jpg)
+![](/images/payimg/alipayimg-my.png)
 
-![](/images/payimg/weipayimg.jpg)
+![](/images/payimg/weipayimg-my.png)
 
 <h3> 如何联系到我 </h3>
 
